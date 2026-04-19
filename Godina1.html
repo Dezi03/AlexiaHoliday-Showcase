@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Explore the elegant room collection at Alexia Hotel.">
+        <link rel="stylesheet" href="Dhoma_toro.css">
+        <title>Alexia Hotel Rooms</title>
+    </head>
+    <body>
+        <div class="site-wrapper">
+            <header class="hero">
+                <div class="hero-overlay">
+                    <div class="hero-copy">
+                        <p class="eyebrow">Luxury room showcase</p>
+                        <h1 class="hero-title">Alexia Holiday</h1>
+                        <p class="hero-subtitle">Discover the comfort and style of our signature guest rooms.</p>
+                        <nav>
+                            <ul class="nav-links">
+                                <li><a class="nav-button" href="index.html">Home</a></li>
+                                <li><a class="nav-button" href="Video.html">Video Showcase</a></li>
+                                <li><a class="nav-button" href="Godina2.html">Godina 2</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <section class="content-section">
+                    <h2 class="section-title">Pamjet nga Godina 1</h2>
+                    <p class="content-text">Dhomat tona jane te rehatshme dhe te
+                    mirëorganizuara, me pamje të bukur nga natyra dhe deti, gjithashtu janë të përshtatshme për çifte dhe familje prej 3,4
+                    dhe 5 personash.</p><br>
+                    
+                    <h2 class="section-title">Per Reservime </h2>
+                    <p class="content-text">Për rezervime, ju lutemi na kontaktoni në numrin e mëposhtëm të WhatsApp: +355 692723280.<br><br> Ne jemi të gatshëm t'ju ndihmojmë me çdo pyetje ose kërkesë që mund të keni për të siguruar një përvojë të paharrueshme në Alexia Holiday.</p>
+                </section>
+
+                <section class="carousel-container">
+                    <button class="carousel-btn prev">&#8249;</button>
+                    <div class="image-list">
+                        <div class="image-item active">
+                            <img src="images/index_01.jpg" alt="Luxury hotel room interior">
+                        </div>
+                        <div class="image-item">
+                            <img src="images/godina_1.1.jpeg" alt="Luxury hotel room interior">
+                        </div>
+                        <div class="image-item">
+                            <img src="images/godina_1.2.jpeg" alt="Elegant guest room details">
+                        </div>
+                        <div class="image-item">
+                            <img src="images/godina_1.3.jpeg" alt="Hotel bedroom with premium bedding">
+                        </div>
+                        <div class="image-item">
+                            <img src="images/godina_1.4.jpeg" alt="Comfortable hotel suite ambiance">
+                        </div>
+                        <div class="image-item">
+                            <img src="images/godina_1.5.jpeg" alt="Stylish hotel room decor">
+                            </div>
+                    </div>
+                    <button class="carousel-btn next">&#8250;</button>
+                </section>
+               
+            </main>
+
+            <footer class="site-footer">
+                <p class="footer-text">Copyright © 2026 Alexia Holiday & Dezi_03. All rights reserved.</p>
+                <a class="footer-link" href="https://maps.app.goo.gl/Uei1yagV9oNxB2k79" target="_blank" rel="noopener noreferrer">Find us on Google Maps</a>
+            </footer>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const items = document.querySelectorAll('.image-item');
+                const prevBtn = document.querySelector('.carousel-btn.prev');
+                const nextBtn = document.querySelector('.carousel-btn.next');
+                let currentIndex = 0;
+
+                function showItem(index) {
+                    items.forEach(item => item.classList.remove('active'));
+                    items[index].classList.add('active');
+                }
+
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + items.length) % items.length;
+                    showItem(currentIndex);
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % items.length;
+                    showItem(currentIndex);
+                });
+            });
+        </script>
+    </body>
+</html>

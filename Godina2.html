@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Discover the deluxe rooms at Alexia Hotel.">
+        <link rel="stylesheet" href="Dhoma_toro.css">
+        <title>Alexia Hotel Deluxe Rooms</title>
+    </head>
+    <body>
+        <div class="site-wrapper">
+            <header class="hero">
+                <div class="hero-overlay">
+                    <div class="hero-copy">
+                        <p class="eyebrow">Deluxe accommodations</p>
+                        <h1 class="hero-title">Alexia Holiday</h1>
+                        <p class="hero-subtitle">Step into premium space and serene comfort in our deluxe room collection.</p>
+                        <nav>
+                            <ul class="nav-links">
+                                <li><a class="nav-button" href="index.html">Home</a></li>
+                                <li><a class="nav-button" href="Video.html">Video Showcase</a></li>
+                                <li><a class="nav-button" href="Godina1.html">Godina 1</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <section class="slideshow-gallery">
+                    <div class="slide fade">
+                        <img src="images/Godina_2_Outside.jpeg" alt="Deluxe room exterior view">
+                    </div>
+                    <div class="slide fade">
+                        <img src="images/godina_2.jpeg" alt="Deluxe room with premium amenities">
+                    </div>
+                    <div class="slide fade">
+                        <img src="images/Ballkon_Plazh.jpeg" alt="Spacious deluxe room balcony">
+                    </div>
+                    <div class="slide fade">
+                        <img src="images/Krevat_Dopjo_tek.jpeg" alt="Deluxe bedroom interior">
+                    </div>
+                    <div class="slide fade">
+                        <img src="images/dush.jpeg" alt="Luxury bathroom facilities">
+                    </div>
+                    <div class="slide fade">
+                        <img src="images/Kuzhine_Alexia.jpeg" alt="Full kitchen facilities">
+                    </div>
+
+                    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+
+                    <div class="dots-container">
+                        <span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                        <span class="dot" onclick="currentSlide(4)"></span>
+                        <span class="dot" onclick="currentSlide(5)"></span>
+                        <span class="dot" onclick="currentSlide(6)"></span>
+                    </div>
+                </section>
+                
+
+                <section class="content-section">
+                    <h2 class="section-title">Pamjet nga Godina</h2>
+                    <p class="content-text">Mundësi gatimi me kuzhinë te completuar, 
+                    ambient i qetë dhe familjar, 
+                    parkim i disponueshëm, 
+                    free wifi dhe barbeque, 
+                    afër detit dhe gjithçka që ju nevojitet për një pushim të paharrueshëm në Borsh.</p>
+                </section>
+                <section class="content-section">
+                    <h2 class="section-title">Per Reservime </h2>
+                    <p class="content-text">Për rezervime, ju lutemi na kontaktoni në numrin e mëposhtëm të WhatsApp: +355 694574650.<br><br> Ne jemi të gatshëm t'ju ndihmojmë me çdo pyetje ose kërkesë që mund të keni për të siguruar një përvojë të paharrueshme në Alexia Holiday.</p>
+                </section>
+            </main>
+
+            <footer class="site-footer">
+                <p class="footer-text">Copyright © 2026 Alexia Holiday & Dezi_03. All rights reserved.</p>
+                <a class="footer-link" href="https://maps.app.goo.gl/Uei1yagV9oNxB2k79" target="_blank" rel="noopener noreferrer">Find us on Google Maps</a>
+            </footer>
+        </div>
+
+        <script>
+            let currentSlideIndex = 1;
+            let slideTimer;
+
+            function showSlide(n) {
+                const slides = document.getElementsByClassName('slide');
+                const dots = document.getElementsByClassName('dot');
+
+                if (n > slides.length) {
+                    currentSlideIndex = 1;
+                }
+                if (n < 1) {
+                    currentSlideIndex = slides.length;
+                }
+
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = 'none';
+                }
+                for (let i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(' active', '');
+                }
+
+                slides[currentSlideIndex - 1].style.display = 'block';
+                dots[currentSlideIndex - 1].className += ' active';
+            }
+
+            function changeSlide(n) {
+                clearTimeout(slideTimer);
+                currentSlideIndex += n;
+                showSlide(currentSlideIndex);
+                autoSlide();
+            }
+
+            function currentSlide(n) {
+                clearTimeout(slideTimer);
+                currentSlideIndex = n;
+                showSlide(currentSlideIndex);
+                autoSlide();
+            }
+
+            function autoSlide() {
+                slideTimer = setTimeout(() => {
+                    currentSlideIndex++;
+                    showSlide(currentSlideIndex);
+                    autoSlide();
+                }, 5000);
+            }
+
+            // Initialize slideshow
+            document.addEventListener('DOMContentLoaded', () => {
+                showSlide(currentSlideIndex);
+                autoSlide();
+            });
+        </script>
+    </body>
+</html>
