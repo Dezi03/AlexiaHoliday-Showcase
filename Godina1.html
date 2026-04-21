@@ -39,7 +39,6 @@
                 </section>
 
                 <section class="carousel-container">
-                    <button class="carousel-btn prev">&#8249;</button>
                     <div class="image-list">
                         <div class="image-item active">
                             <img src="images/index_01.jpg" alt="Luxury hotel room interior">
@@ -56,11 +55,7 @@
                         <div class="image-item">
                             <img src="images/godina_1.4.jpeg" alt="Comfortable hotel suite ambiance">
                         </div>
-                        <div class="image-item">
-                            <img src="images/godina_1.5.jpeg" alt="Stylish hotel room decor">
-                            </div>
                     </div>
-                    <button class="carousel-btn next">&#8250;</button>
                 </section>
                
             </main>
@@ -74,25 +69,65 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const items = document.querySelectorAll('.image-item');
-                const prevBtn = document.querySelector('.carousel-btn.prev');
-                const nextBtn = document.querySelector('.carousel-btn.next');
                 let currentIndex = 0;
+                let slideTimer;
 
                 function showItem(index) {
                     items.forEach(item => item.classList.remove('active'));
                     items[index].classList.add('active');
+
+                    // Adjust container height to match image resolution
+                    const container = document.querySelector('.image-list');
+                    const activeItem = items[index];
+                    const img = activeItem.querySelector('img');
+                    const aspectRatio = img.naturalHeight / img.naturalWidth;
+                    const newHeight = aspectRatio * container.offsetWidth;
+                    container.style.height = newHeight + 'px';
                 }
 
-                prevBtn.addEventListener('click', () => {
-                    currentIndex = (currentIndex - 1 + items.length) % items.length;
+                function changeSlide(n) {
+                    clearTimeout(slideTimer);
+                    currentIndex = (currentIndex + n + items.length) % items.length;
                     showItem(currentIndex);
+                    autoSlide();
+                }
+
+                function autoSlide() {
+                    slideTimer = setTimeout(() => {
+                        currentIndex = (currentIndex + 1) % items.length;
+                        showItem(currentIndex);
+                        autoSlide();
+                    }, 4000);
+                }
+
+                // Initialize auto slideshow
+                showItem(currentIndex);
+                autoSlide();
+
+                // Handle window resize to adjust height
+                window.addEventListener('resize', () => {
+                    const container = document.querySelector('.image-list');
+                    const activeItem = document.querySelector('.image-item.active');
+                    if (activeItem) {
+                        const img = activeItem.querySelector('img');
+                        const aspectRatio = img.naturalHeight / img.naturalWidth;
+                        const newHeight = aspectRatio * container.offsetWidth;
+                        container.style.height = newHeight + 'px';
+                    }
+                });
+            });
+
+                prevBtn.addEventListener('click', () => {
+                    changeSlide(-1);
                 });
 
                 nextBtn.addEventListener('click', () => {
-                    currentIndex = (currentIndex + 1) % items.length;
-                    showItem(currentIndex);
+                    changeSlide(1);
                 });
-            });
+
+                // Initialize auto slideshow
+                showItem(currentIndex);
+                autoSlide();
         </script>
     </body>
 </html>

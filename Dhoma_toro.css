@@ -566,11 +566,11 @@ textarea {
     position: relative;
     width: 100%;
     max-width: 400px;
-    height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1;
+    transition: height 0.5s ease-in-out;
 }
 
 .image-item {
@@ -624,7 +624,9 @@ textarea {
     position: relative;
     max-width: 100%;
     margin: 0 auto;
-    margin-bottom: 500px;
+    margin-bottom: 50px;
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
 }
 
 .slide {
@@ -632,13 +634,21 @@ textarea {
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 600px;
+    height: auto;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .slide.active {
     opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
 }
 
 .prev,
@@ -684,7 +694,7 @@ textarea {
     }
 
     .slide {
-        min-height: 600px;
+        height: auto;
     }
 
     .prev,
@@ -701,8 +711,12 @@ textarea {
 }
 
 @media (max-width: 480px) {
+    .slideshow-gallery {
+        margin-bottom: 20px;
+    }
+
     .slide {
-        min-height: 540px;
+        height: auto;
     }
 
     .prev,
@@ -753,8 +767,12 @@ textarea {
 }
 
 @media (max-width: 375px) {
+    .slideshow-gallery {
+        margin-bottom: 20px;
+    }
+
     .slide {
-        min-height: 465px;
+        height: auto;
     }
 
     .prev,

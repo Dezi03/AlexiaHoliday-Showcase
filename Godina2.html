@@ -29,27 +29,24 @@
 
             <main>
                 <section class="slideshow-gallery">
-                    <div class="slide fade">
+                    <div class="slide">
                         <img src="images/Godina_2_Outside.jpeg" alt="Deluxe room exterior view">
                     </div>
-                    <div class="slide fade">
+                    <div class="slide">
                         <img src="images/godina_2.jpeg" alt="Deluxe room with premium amenities">
                     </div>
-                    <div class="slide fade">
+                    <div class="slide">
                         <img src="images/Ballkon_Plazh.jpeg" alt="Spacious deluxe room balcony">
                     </div>
-                    <div class="slide fade">
+                    <div class="slide">
                         <img src="images/Krevat_Dopjo_tek.jpeg" alt="Deluxe bedroom interior">
                     </div>
-                    <div class="slide fade">
+                    <div class="slide">
                         <img src="images/Dush.jpeg" alt="Luxury bathroom facilities">
                     </div>
-                    <div class="slide fade">
+                    <div class="slide">
                         <img src="images/Kuzhine_Alexia.jpeg" alt="Full kitchen facilities">
                     </div>
-
-                    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-                    <a class="next" onclick="changeSlide(1)">&#10095;</a>
 
                     <div class="dots-container">
                         <span class="dot" onclick="currentSlide(1)"></span>
@@ -98,14 +95,22 @@
                 }
 
                 for (let i = 0; i < slides.length; i++) {
-                    slides[i].style.display = 'none';
+                    slides[i].classList.remove('active');
                 }
                 for (let i = 0; i < dots.length; i++) {
                     dots[i].className = dots[i].className.replace(' active', '');
                 }
 
-                slides[currentSlideIndex - 1].style.display = 'block';
+                slides[currentSlideIndex - 1].classList.add('active');
                 dots[currentSlideIndex - 1].className += ' active';
+
+                // Adjust container height to match image resolution
+                const container = document.querySelector('.slideshow-gallery');
+                const activeSlide = slides[currentSlideIndex - 1];
+                const img = activeSlide.querySelector('img');
+                const aspectRatio = img.naturalHeight / img.naturalWidth;
+                const newHeight = aspectRatio * container.offsetWidth;
+                container.style.height = newHeight + 'px';
             }
 
             function changeSlide(n) {
@@ -127,13 +132,25 @@
                     currentSlideIndex++;
                     showSlide(currentSlideIndex);
                     autoSlide();
-                }, 5000);
+                }, 4000);
             }
 
             // Initialize slideshow
             document.addEventListener('DOMContentLoaded', () => {
                 showSlide(currentSlideIndex);
                 autoSlide();
+
+                // Handle window resize to adjust height
+                window.addEventListener('resize', () => {
+                    const container = document.querySelector('.slideshow-gallery');
+                    const activeSlide = document.querySelector('.slide.active');
+                    if (activeSlide) {
+                        const img = activeSlide.querySelector('img');
+                        const aspectRatio = img.naturalHeight / img.naturalWidth;
+                        const newHeight = aspectRatio * container.offsetWidth;
+                        container.style.height = newHeight + 'px';
+                    }
+                });
             });
         </script>
     </body>
